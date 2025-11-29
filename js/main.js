@@ -177,13 +177,24 @@ AOS.init({
                     $(".number").each(function () {
                         var $this = $(this),
                             num = $this.data("number");
+
+                        // 숫자 크기에 따라 duration 조절
+                        var duration;
+                        if (num <= 20) {
+                            duration = 1300; // 작은 숫자: 1.3초
+                        } else if (num <= 100) {
+                            duration = 2500; // 중간 숫자: 2.5초
+                        } else {
+                            duration = 2000; // 큰 숫자: 2초
+                        }
+
                         console.log(num);
                         $this.animateNumber(
                             {
                                 number: num,
                                 numberStep: comma_separator_number_step,
                             },
-                            7000
+                            duration
                         );
                     });
                 }
@@ -308,8 +319,7 @@ AOS.init({
         this.el.innerHTML = '<span class="wrap">' + this.txt + "</span>";
 
         var that = this;
-        //   var delta = 300 - Math.random() * 100;
-        var delta = 150 - Math.random() * 50;
+        var delta = 100 - Math.random() * 30;
 
         if (this.isDeleting) {
             delta /= 2;

@@ -2271,27 +2271,27 @@ fieldset:disabled a.btn {
       box-shadow: 0 0 0 0.2rem rgba(82, 88, 93, 0.5); }
 
 .btn-outline-primary {
-  color: #007bff;
-  border-color: #007bff; }
+  color: #3e64ff;
+  border-color: #3e64ff; }
   .btn-outline-primary:hover {
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff; }
+    background-color: #3e64ff;
+    border-color: #3e64ff; }
   .btn-outline-primary:focus, .btn-outline-primary.focus {
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(62, 100, 255, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(62, 100, 255, 0.5); }
   .btn-outline-primary.disabled, .btn-outline-primary:disabled {
-    color: #007bff;
+    color: #3e64ff;
     background-color: transparent; }
   .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
   .show > .btn-outline-primary.dropdown-toggle {
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff; }
+    background-color: #3e64ff;
+    border-color: #3e64ff; }
     .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
     .show > .btn-outline-primary.dropdown-toggle:focus {
-      -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
+      -webkit-box-shadow: 0 0 0 0.2rem rgba(62, 100, 255, 0.5);
+      box-shadow: 0 0 0 0.2rem rgba(62, 100, 255, 0.5); }
 
 .btn-outline-secondary {
   color: #6c757d;
@@ -8695,7 +8695,7 @@ h1, h2, h3, h4, h5,
 .page {
   width: 100%;
   margin-bottom: 7em; }
-  .page.four {
+  .page.five {
     margin-bottom: 0; }
   .page .heading {
     font-weight: 800;
@@ -9581,6 +9581,39 @@ textarea.form-control {
     .categories li.active a, .sidelink li.active a {
       color: #000000;
       font-style: italic; }
+
+.about-toggle {
+			cursor: pointer;
+			user-select: none;
+			transition: color 0.3s ease;
+		}
+		
+		.about-toggle:hover {
+			color: #2c98f0;
+		}
+		
+		#toggle-icon {
+			display: inline-block;
+			transition: transform 0.3s ease;
+			margin-left: 5px;
+		}
+		
+		#toggle-icon.rotated {
+			transform: rotate(180deg);
+		}
+		
+		#about-content {
+			overflow: hidden;
+			transition: max-height 0.3s ease, opacity 0.3s ease;
+			max-height: 0;
+			opacity: 0;
+		}
+		
+		#about-content.show {
+			max-height: 500px;
+			opacity: 1;
+			margin-top: 15px;
+		}
 
 #ftco-loader {
   position: fixed;

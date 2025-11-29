@@ -22,6 +22,105 @@
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
+
+	<style>
+		.about-toggle {
+			cursor: pointer;
+			user-select: none;
+			transition: color 0.3s ease;
+		}
+		
+		.about-toggle:hover {
+			color: #2c98f0;
+		}
+		
+		#toggle-icon {
+			display: inline-block;
+			transition: transform 0.3s ease;
+			margin-left: 5px;
+		}
+		
+		#toggle-icon.rotated {
+			transform: rotate(180deg);
+		}
+		
+		#about-content {
+			overflow: hidden;
+			transition: max-height 0.3s ease, opacity 0.3s ease;
+			max-height: 0;
+			opacity: 0;
+		}
+		
+		#about-content.show {
+			max-height: 500px;
+			opacity: 1;
+			margin-top: 15px;
+		}
+		
+		/* Skills Grid with Flexbox */
+		.skills-grid {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1rem;
+		}
+		
+		.skill-item {
+			flex: 0 0 calc(20% - 0.8rem); /* 5개씩, gap 고려 */
+		}
+		
+		/* Skills Card Styles */
+		.skill-card {
+			transition: all 0.3s ease;
+			border: 1px solid #f0f0f0;
+			height: 140px; /* 고정 높이 */
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 1rem !important;
+		}
+		
+		.skill-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+			border-color: #2c98f0;
+		}
+		
+		.skill-icon {
+			width: 60px;
+			height: 60px;
+			transition: transform 0.3s ease;
+			margin-bottom: 0.75rem !important;
+		}
+		
+		.skill-card:hover .skill-icon {
+			transform: scale(1.1);
+		}
+		
+		.skill-card h4 {
+			font-size: 0.875rem;
+			font-weight: 600;
+			margin: 0;
+			text-align: center;
+			line-height: 1.2;
+			word-break: break-word;
+			overflow-wrap: break-word;
+			max-width: 100%;
+		}
+		
+		/* Responsive */
+		@media (max-width: 991px) {
+			.skill-item {
+				flex: 0 0 calc(33.33% - 0.67rem); /* 태블릿: 3개씩 */
+			}
+		}
+		
+		@media (max-width: 767px) {
+			.skill-item {
+				flex: 0 0 calc(50% - 0.5rem); /* 모바일: 2개씩 */
+			}
+		}
+	</style>
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -39,12 +138,11 @@
 				<ul class="navbar-nav nav ml-auto">
 					<li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
 					<li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
-					<li class="nav-item"><a href="#education-section" class="nav-link"><span>Education</span></a></li>
+					<li class="nav-item"><a href="#experience-section" class="nav-link"><span>Experience</span></a></li>
 					<li class="nav-item"><a href="#projects-section" class="nav-link"><span>Projects</span></a></li>
 					<li class="nav-item"><a href="#side-projects-section" class="nav-link"><span>Side
 								Projects</span></a>
 					</li>
-					<li class="nav-item"><a href="#blog-section" class="nav-link"><span>My Blog</span></a></li>
 					<li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
 				</ul>
 			</div>
@@ -58,9 +156,9 @@
 					<div class="text text-center">
 						<span class="subheading">Hey! I am</span>
 						<h1>Eunjeong(Alice) Hur</h1>
-						<h2>I'm a
-							<span class="txt-rotate" data-period="800"
-								data-rotate='["Full Stack Dev", "Startup Environment", "1.5 Years"]'></span>
+						<h2>
+							<span class="txt-rotate" data-period="400"
+								data-rotate='["Full Stack Dev", "AI & SaaS Products", "React • Next.js • Python"]'></span>
 						</h2>
 					</div>
 				</div>
@@ -90,24 +188,38 @@
 						<div class="col-md-12 heading-section ftco-animate">
 							<h1 class="big">About</h1>
 							<h2 class="mb-4">About Me</h2>
-							<p>커피와 노트북만 있다면, 언제 어디서나 즐겁게 일하는 6년차 개발자 정쿠입니다. </p>
+							<p>I believe every project is a journey of <strong>learning</strong>, not just for me but for everyone involved.</p>
+							<span class="subheading about-toggle" onclick="expandAbout()">Click here!</span>
+							<div id="about-content">
+								<p>A <b>detail-oriented</b> and <b>persistent junior developer</b>, driven by a passion for <b>solving complex problems</b> and creating impactful, user-friendly solutions.</p>
+								<p>I thrive in <b>collaborative environments,</b> where I can learn from others and incorporate <b>feedback</b> to continuously improve my skills and deliver high-quality results. With a strong foundation in <b>full-stack development</b> and a commitment to <b>continuous learning,</b> I am eager to contribute to innovative projects and grow as a developer.</p>
+							</div>
 							<ul class="about-info mt-4 px-md-0 px-2">
-								<li class="d-flex"><span>Name:</span> <span>구민정</span></li>
-								<li class="d-flex"><span>Address:</span> <span>성남시 분당구 정자동</span></li>
-								<li class="d-flex"><span>Email:</span> <span>cookie00421@gmail.com</span></li>
-								<li class="d-flex"><span>Phone: </span> <span>+82-10-1234-5678</span></li>
+								<li class="d-flex"><span>Name:</span> <span>Alice Hur</span></li>
+								<li class="d-flex"><span>Address:</span> <span>Coquitlam, BC, Canada</span></li>
+								<li class="d-flex"><span>Email:</span> <span>alice.hur729@gmail.com</span></li>
+								<li class="d-flex"><span>Phone: </span> <span>(+1) 778-867-5373</span></li>
 							</ul>
 						</div>
 					</div>
 					<div class="counter-wrap ftco-animate d-flex mt-md-3">
-						<div class="text">
-							<p class="mb-4">
-								<span class="number" data-number="24">0</span>
-								<span>Project complete</span>
-							</p>
+						<!-- <div class="text">
 							<p><a target="_blank"
-									href="https://drive.google.com/file/d/1uJg0Yun35HWc4YsEKfEX5L6Uyik5MPl_/view?usp=sharing"
-									class="btn btn-primary py-3 px-3">이력서 다운받기</a></p>
+									href="https://drive.google.com/file/d/1V5ag6q8akLhNyVU6rdrwZpi31LuZL9DO/view?usp=sharing"
+									class="btn btn-primary py-3 px-3">Download Resume</a></p>
+						</div> -->
+						<div class="text">
+							<p>
+								<a target="_blank"
+									href="https://drive.google.com/file/d/1V5ag6q8akLhNyVU6rdrwZpi31LuZL9DO/view?usp=sharing"
+									class="btn btn-primary py-3 px-3 mr-3">Download Resume</a>
+								<a target="_blank"
+									href="https://www.linkedin.com/in/eunjeong-hur-abaa6521b/"
+									class="btn btn-outline-primary py-3 px-3 mr-3">LinkedIn</a>
+								<a target="_blank"
+									href="https://github.com/EunjeongHur"
+									class="btn btn-outline-primary py-3 px-3">GitHub</a>
+							</p>
 						</div>
 					</div>
 				</div>
@@ -121,32 +233,32 @@
 				<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
 					<div class="block-18 shadow">
 						<div class="text">
-							<strong class="number" data-number="365">0</strong>
-							<span>코딩한 일수</span>
+							<strong class="number" data-number="10" style="display: inline-block;">0</strong> <strong class="number"style="display: inline-block;">+</strong>
+							<span>Features Shipped</span>
 						</div>
 					</div>
 				</div>
 				<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
 					<div class="block-18 shadow">
 						<div class="text">
-							<strong class="number" data-number="100">0</strong>
-							<span>Complete Projects</span>
+							<strong class="number" data-number="600" style="display: inline-block;">0</strong> <strong class="number" style="display: inline-block;">+</strong>
+							<span>Commits This Year</span>
 						</div>
 					</div>
 				</div>
 				<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
 					<div class="block-18 shadow">
 						<div class="text">
-							<strong class="number" data-number="100">0</strong>
-							<span>Happy Customers</span>
+							<strong class="number" data-number="18">0</strong>
+							<span>Months of Experience</span>
 						</div>
 					</div>
 				</div>
 				<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
 					<div class="block-18 shadow">
 						<div class="text">
-							<strong class="number" data-number="50">0</strong>
-							<span>Cups of coffee</span>
+							<strong class="number" data-number="24" style="display: inline-block;">0</strong> <strong class="number" style="display: inline-block;">/</strong> <strong class="number" data-number="7" style="display: inline-block;">0</strong>
+							<span>Growth Mindset</span>
 						</div>
 					</div>
 				</div>
@@ -156,377 +268,353 @@
 
 
 	<section class="ftco-section ftco-no-pb goto-here" id="resume-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3">
-					<nav id="navi">
-						<ul>
-							<li><a href="#page-1">Education</a></li>
-							<li><a href="#page-2">Experience</a></li>
-							<li><a href="#page-3">Skills</a></li>
-							<li><a href="#page-4">Projects</a></li>
-						</ul>
-					</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<nav id="navi">
+					<ul>
+						<li><a href="#page-1">Skills</a></li>
+						<li><a href="#page-2">Experience</a></li>
+						<li><a href="#page-3">Projects</a></li>
+						<li><a href="#page-4">Education</a></li>
+						<li><a href="#page-5">Volunteer</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-md-9">
+				<!-- PAGE 1: SKILLS -->
+				<div id="page-1" class="page one">
+					<h2 class="heading">Skills</h2>
+					
+					<!-- Languages -->
+					<h3 class="h5 font-weight-bold text-primary mb-4">Languages</h3>
+					<div class="skills-grid mb-5">
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="skill-icon">
+								<h4 class="h6 mb-0">Python</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="skill-icon">
+								<h4 class="h6 mb-0">JavaScript</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" class="skill-icon">
+								<h4 class="h6 mb-0">HTML</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" class="skill-icon">
+								<h4 class="h6 mb-0">CSS</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" class="skill-icon">
+								<h4 class="h6 mb-0">TypeScript</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="skill-icon">
+								<h4 class="h6 mb-0">Java</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" class="skill-icon">
+								<h4 class="h6 mb-0">C</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" alt="Kotlin" class="skill-icon">
+								<h4 class="h6 mb-0">Kotlin</h4>
+							</div>
+						</div>
+					</div>
+
+					<!-- Frameworks & Libraries -->
+					<h3 class="h5 font-weight-bold text-primary mb-4">Frameworks & Libraries</h3>
+					<div class="skills-grid mb-5">
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="skill-icon">
+								<h4 class="h6 mb-0">React</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React Native" class="skill-icon">
+								<h4 class="h6 mb-0">React Native</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" class="skill-icon">
+								<h4 class="h6 mb-0">Next.js</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" class="skill-icon">
+								<h4 class="h6 mb-0">Express.js</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="skill-icon">
+								<h4 class="h6 mb-0">Node.js</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" class="skill-icon">
+								<h4 class="h6 mb-0">Flask</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="skill-icon">
+								<h4 class="h6 mb-0">Tailwind CSS</h4>
+							</div>
+						</div>
+					</div>
+
+					<!-- Databases -->
+					<h3 class="h5 font-weight-bold text-primary mb-4">Databases</h3>
+					<div class="skills-grid mb-5">
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="skill-icon">
+								<h4 class="h6 mb-0">MySQL</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="skill-icon">
+								<h4 class="h6 mb-0">PostgreSQL</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" class="skill-icon">
+								<h4 class="h6 mb-0">MongoDB</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" class="skill-icon">
+								<h4 class="h6 mb-0">Firebase</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" alt="Supabase" class="skill-icon">
+								<h4 class="h6 mb-0">Supabase</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" alt="MS SQL" class="skill-icon">
+								<h4 class="h6 mb-0">MS SQL</h4>
+							</div>
+						</div>
+					</div>
+
+					<!-- Tools & Scripts -->
+					<h3 class="h5 font-weight-bold text-primary mb-4">Tools & Scripts</h3>
+					<div class="skills-grid mb-5">
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="skill-icon">
+								<h4 class="h6 mb-0">Git</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="skill-icon">
+								<h4 class="h6 mb-0">GitHub</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash" class="skill-icon">
+								<h4 class="h6 mb-0">Bash</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="skill-icon">
+								<h4 class="h6 mb-0">Docker</h4>
+							</div>
+						</div>
+						<div class="skill-item">
+							<div class="skill-card text-center bg-white rounded shadow-sm">
+								<img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" class="skill-icon">
+								<h4 class="h6 mb-0">Power BI</h4>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="col-md-9" id="education-section">
-					<div id="page-1" class="page one">
-						<h2 class="heading">Education</h2>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2010-2015</span>
-								<h2>컴퓨터 공학 & 전자 공학 복수 전공</h2>
-								<span class="position">Handong Global Univercity</span>
-								<p>전산 동아리 활동과 기숙사 생활을 통해, 함께 일하는 밥을 배웠습니다. Computer Science 기초 지식을 4년간 탄탄히 쌓아 빠르고 올바른
-									방향으로 성장할 수 있는 개발자가 되었습니다. </p>
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2014-2015</span>
-								<h2>Computer Processing Systems/Computer Software</h2>
-								<span class="position">Cambridge University</span>
-								<p>A small river named Duden flows by their place and supplies it with the necessary
-									regelialia. It is a paradisematic country, in which roasted parts of sentences fly
-									into your mouth.</p>
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2014-2015</span>
-								<h2>Diploma in Computer</h2>
-								<span class="position">Cambridge University</span>
-								<p>A small river named Duden flows by their place and supplies it with the necessary
-									regelialia. It is a paradisematic country, in which roasted parts of sentences fly
-									into your mouth.</p>
+
+				<!-- PAGE 2: EXPERIENCE -->
+				<section id="experience-section">
+				<div id="page-2 experience-section" class="page two">
+					<h2 class="heading">Experience</h2>
+					<div class="resume-wrap d-flex ftco-animate">
+						<div class="icon d-flex align-items-center justify-content-center" style="background-image: url(images/sdi_logo.png); background-size: contain; background-repeat: no-repeat; background-position: center;">
+</div>
+						<div class="text pl-3 pb-3">
+							<span class="date">May 2025 - PRESENT</span>
+							<h2>AI / Full Stack Developer</h2>
+							<span class="position">SDI Creative Technologies Ltd.</span>
+							<p>Built an AI-powered interior design platform with full-stack development<br /></p>
+							<b class="text-primary">Tech Stack</b>
+							<p>Next.js, React, Python Flask, PostgreSQL, AI APIs</p>
+							<b class="text-primary">Key Responsibilities</b>
+							<div>
+								<div> - Built and deployed full-stack SaaS platform from scratch to production </div>
+								<div> - Designed database architecture and RESTful APIs for core platform features</div>
+								<div> - Developed AI personalization engine generating custom designs from user quiz inputs</div>
 							</div>
 						</div>
 					</div>
-
-					<div id="page-2" class="page two">
-						<h2 class="heading">Work Experience</h2>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2019.09-2021.04(1년 8개월)</span>
-								<h2>Full Stack Developer</h2>
-								<span class="position">주식회사 더라피스</span>
-								<p>동남아 스파 예약 서비스 Web 개발, 온라인 요가 수업 예약/결제 서비스 개발<br /></p>
-								<b class="text-primary">기술 스택</b>
-								<p>ReactJS, Next.js,Typescript, Styled-components, AWS S3 static hosting</p>
-								<b class="text-primary">주요 업무 </b>
-								<div>
-									<div> - React + typescript 기반 웹 서비스 개발/운영</div>
-									<div> - 디자인 시스템 도입을 위한 UI 컴포넌트 관리용 storybook 도입</div>
-									<div> - SEO를 위한 Next.js 도입</div>
-									<div> - Serverless 환경을 위한 s3 기반의 static hosting 구축</div>
-								</div>
-								</p>
-							</div>
-
+					<div class="resume-wrap d-flex ftco-animate">
+						<div class="icon d-flex align-items-center justify-content-center">
+							<span class="flaticon-ideas"></span>
 						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2014-2015</span>
-								<h2>Web Designer</h2>
-								<span class="position">Cambridge University</span>
-								<p>A small river named Duden flows by their place and supplies it with the necessary
-									regelialia. It is a paradisematic country, in which roasted parts of sentences
-									fly
-									into your mouth.</p>
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2014-2015</span>
-								<h2>Web Marketing</h2>
-								<span class="position">Cambridge University</span>
-								<p>A small river named Duden flows by their place and supplies it with the necessary
-									regelialia. It is a paradisematic country, in which roasted parts of sentences
-									fly
-									into your mouth.</p>
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2014-2015</span>
-								<h2>Art &amp; Creative Director</h2>
-								<span class="position">Side Tech</span>
-								<p>A small river named Duden flows by their place and supplies it with the necessary
-									regelialia. It is a paradisematic country, in which roasted parts of sentences
-									fly
-									into your mouth.</p>
+						<div class="text pl-3 pb-3">
+							<span class="date">May - Dec 2023</span>
+							<h2>Data Analyst | <span class="position"> Co-op Student</span></h2>
+							<span class="position">BC Fraser Health</span>
+							<p>Built an AI-powered interior design platform with full-stack development<br /></p>
+							<b class="text-primary">Tech Stack</b>
+							<p>SQL, Power BI, SSRS, MS SQL Server</p>
+							<b class="text-primary">Key Responsibilities</b>
+							<div>
+								<div> - Validated SQL queries to ensure data accuracy and integrity</div>
+								<div> - Designed Power BI and SSRS dashboards/reports to track key metrics</div>
+								<div> - Enhanced dashboard performance and usability by optimizing data queries</div>
+								<div> - Redesigned visual layouts for improved user experience</div>
 							</div>
 						</div>
 					</div>
-					<div id="page-3" class="page three">
-						<h2 class="heading">Skills</h2>
-						<div class="row progress-circle mb-5">
-							<div class="col-lg-4 mb-4">
-								<div class="bg-white rounded-lg shadow p-4">
-									<h2 class="h5 font-weight-bold text-center mb-4">CSS</h2>
+				</div>
+				</section>
 
-									<!-- Progress bar 1 -->
-									<div class="progress mx-auto" data-value='90'>
-										<span class="progress-left">
-											<span class="progress-bar border-primary"></span>
-										</span>
-										<span class="progress-right">
-											<span class="progress-bar border-primary"></span>
-										</span>
-										<div
-											class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-											<div class="h2 font-weight-bold">90<sup class="small">%</sup></div>
-										</div>
-									</div>
-									<!-- END -->
-
-									<!-- Demo info -->
-									<div class="row text-center mt-4">
-										<div class="col-6 border-right">
-											<div class="h4 font-weight-bold mb-0">28%</div><span
-												class="small text-gray">Last week</span>
-										</div>
-										<div class="col-6">
-											<div class="h4 font-weight-bold mb-0">60%</div><span
-												class="small text-gray">Last month</span>
-										</div>
-									</div>
-									<!-- END -->
-								</div>
-							</div>
-
-							<div class="col-lg-4 mb-4">
-								<div class="bg-white rounded-lg shadow p-4">
-									<h2 class="h5 font-weight-bold text-center mb-4">HTML</h2>
-
-									<!-- Progress bar 1 -->
-									<div class="progress mx-auto" data-value='80'>
-										<span class="progress-left">
-											<span class="progress-bar border-primary"></span>
-										</span>
-										<span class="progress-right">
-											<span class="progress-bar border-primary"></span>
-										</span>
-										<div
-											class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-											<div class="h2 font-weight-bold">80<sup class="small">%</sup></div>
-										</div>
-									</div>
-									<!-- END -->
-
-									<!-- Demo info -->
-									<div class="row text-center mt-4">
-										<div class="col-6 border-right">
-											<div class="h4 font-weight-bold mb-0">28%</div><span
-												class="small text-gray">Last week</span>
-										</div>
-										<div class="col-6">
-											<div class="h4 font-weight-bold mb-0">60%</div><span
-												class="small text-gray">Last month</span>
-										</div>
-									</div>
-									<!-- END -->
-								</div>
-							</div>
-
-							<div class="col-lg-4 mb-4">
-								<div class="bg-white rounded-lg shadow p-4">
-									<h2 class="h5 font-weight-bold text-center mb-4">jQuery</h2>
-
-									<!-- Progress bar 1 -->
-									<div class="progress mx-auto" data-value='75'>
-										<span class="progress-left">
-											<span class="progress-bar border-primary"></span>
-										</span>
-										<span class="progress-right">
-											<span class="progress-bar border-primary"></span>
-										</span>
-										<div
-											class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-											<div class="h2 font-weight-bold">75<sup class="small">%</sup></div>
-										</div>
-									</div>
-									<!-- END -->
-
-									<!-- Demo info -->
-									<div class="row text-center mt-4">
-										<div class="col-6 border-right">
-											<div class="h4 font-weight-bold mb-0">28%</div><span
-												class="small text-gray">Last week</span>
-										</div>
-										<div class="col-6">
-											<div class="h4 font-weight-bold mb-0">60%</div><span
-												class="small text-gray">Last month</span>
-										</div>
-									</div>
-									<!-- END -->
-								</div>
-							</div>
+				<!-- PAGE 3: PROJECTS -->
+				<section id="projects-section">
+				<div id="page-3" class="page three">
+					<h2 class="heading">Projects</h2>
+					<div class="resume-wrap d-flex ftco-animate">
+						<div class="icon d-flex align-items-center justify-content-center">
+							<span class="flaticon-ideas"></span>
 						</div>
-						<div class="row">
-							<div class="col-md-6 animate-box">
-								<div class="progress-wrap ftco-animate">
-									<h3>React</h3>
-									<div class="progress">
-										<div class="progress-bar color-1" role="progressbar" aria-valuenow="90"
-											aria-valuemin="0" aria-valuemax="100" style="width:90%">
-											<span>90%</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 animate-box">
-								<div class="progress-wrap ftco-animate">
-									<h3>jQuery</h3>
-									<div class="progress">
-										<div class="progress-bar color-2" role="progressbar" aria-valuenow="85"
-											aria-valuemin="0" aria-valuemax="100" style="width:85%">
-											<span>85%</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 animate-box">
-								<div class="progress-wrap ftco-animate">
-									<h3>HTML5</h3>
-									<div class="progress">
-										<div class="progress-bar color-3" role="progressbar" aria-valuenow="95"
-											aria-valuemin="0" aria-valuemax="100" style="width:95%">
-											<span>95%</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 animate-box">
-								<div class="progress-wrap ftco-animate">
-									<h3>CSS3</h3>
-									<div class="progress">
-										<div class="progress-bar color-4" role="progressbar" aria-valuenow="90"
-											aria-valuemin="0" aria-valuemax="100" style="width:90%">
-											<span>90%</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 animate-box">
-								<div class="progress-wrap ftco-animate">
-									<h3>WordPress</h3>
-									<div class="progress">
-										<div class="progress-bar color-5" role="progressbar" aria-valuenow="70"
-											aria-valuemin="0" aria-valuemax="100" style="width:70%">
-											<span>70%</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 animate-box">
-								<div class="progress-wrap ftco-animate">
-									<h3>SEO</h3>
-									<div class="progress">
-										<div class="progress-bar color-6" role="progressbar" aria-valuenow="80"
-											aria-valuemin="0" aria-valuemax="100" style="width:80%">
-											<span>80%</span>
-										</div>
-									</div>
-								</div>
+						<div class="text pl-3">
+							<span class="date">Sept - Dec 2024</span>
+							<div class="d-flex">
+							<h2>Racer X Mobile Application</h2><div class="pl-2">&nbsp;<a class="btn btn-outline-secondary" target="_blank" href="https://racerxonline.com/2011/12/01/racer-x-mobile-apps">View Website</a></div></div>
+							<span class="position">BCIT Practicum (Term 4)</span>
+							<p>A mobile application for a leading action sports news publication, featuring API-powered dynamic content delivery</p>
+							<div><b class="text-dark">Tech Stack : </b>React Native, TypeScript, Node.js, Expo, MySQL</div>
+							<div class="pb-4"> <b class="text-dark">Key Features : </b> API-driven content rendering, Modular component architecture, Enhanced navigation UX, Agile team collaboration</div>
+						</div>
+					</div>
+					<div class="resume-wrap d-flex ftco-animate">
+						<div class="icon d-flex align-items-center justify-content-center">
+							<span class="flaticon-ideas"></span>
+						</div>
+						<div class="text pl-3">
+							<span class="date">May - June 2024</span>
+							<div class="d-flex">
+							<h2>BCIT Retiree Connect</h2></div>
+							<span class="position">BCIT Practicum (Term 3)</span>
+							<p>A software application to streamline membership tracking and communication with a secure, database-driven system</p>
+							<div><b class="text-dark">Tech Stack : </b>Python, Tkinter, MySQL</div>
+							<div class="pb-4"> <b class="text-dark">Key Features : </b> Automated data management, Email communication tool, Cross-platform compatibility (Windows/Mac) </div>
+						</div>
+					</div>
+				</div>
+				</section>
+
+				<!-- PAGE 4: EDUCATION -->
+				<div id="page-4" class="page four">
+					<h2 class="heading">Education</h2>
+					<div class="resume-wrap d-flex ftco-animate">
+						<div class="icon d-flex align-items-center justify-content-center">
+							<span class="flaticon-ideas"></span>
+						</div>
+						<div class="text pl-3">
+							<span class="date">Sept 2022 - Dec 2024</span>
+							<h2>Computer Systems Technology</h2>
+							<span class="position">British Columbia Institute of Technology</span>
+							<p>GPA: 91%</p>
+						</div>
+					</div>
+					<div class="resume-wrap d-flex ftco-animate">
+						<div class="icon d-flex align-items-center justify-content-center">
+							<span class="flaticon-ideas"></span>
+						</div>
+						<div class="text pl-3">
+							<span class="date">Sept 2021 - May 2022</span>
+							<h2>Computer Information Technology</h2>
+							<span class="position">British Columbia Institute of Technology</span>
+							<p>GPA: 89%</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- PAGE 5: VOLUNTEER -->
+				<div id="page-5" class="page five">
+					<h2 class="heading">Volunteer</h2>
+					<div class="resume-wrap d-flex ftco-animate">
+						<div class="icon d-flex align-items-center justify-content-center">
+							<span class="flaticon-ideas"></span>
+						</div>
+						<div class="text pl-3 pb-3">
+							<span class="date">Feb 2025 - Present</span>
+							<h2>Study Team</h2>
+							<span class="position">Korean Developers & Designers (KDD)</span>
+							<p>Built an AI-powered interior design platform with full-stack development<br /></p>
+							<b class="text-primary">Key Responsibilities</b>
+							<div>
+								<div> - Plan and structure study programs, including desigining learning goals and curriculum outlines</div>
+								<div> - Coordinate member recruitment and onboarding and support inital study group organization</div>
+								<div> - Oversee overall study operations, handle issues within groups, and ensure smooth participant experience</div>
+								<div> - Foster an engaging and collaborative study environment to encourage active participation and knowledge sharing</div>
 							</div>
 						</div>
 					</div>
-					<div id="page-4" class="page four">
-						<h2 id="projects-section" class="heading">Projects</h2>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2019.09-2020.08</span>
-								<div class="d-flex">
-									<h2>웰리스 여행 상품 예약 플랫폼 개발</h2>
-									<div>&nbsp;<a class="btn btn-outline-secondary" target="_blank"
-											class="btn btn-outline-secondary"
-											href="https://github.com/congchu/portfolio-template-2">Github</a>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="/images/project_1_screenshot.png">스크린샷</a>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://www.wellytravel.com/">Link</a>
-									</div>
-								</div>
-								<span class="position">주식회사 더라피스</span>
-								<div> <b class="text-dark">기술 스택 : </b>React, Typescript, Next.js, Styled-Component,
-									MobX
-								</div>
-								<div> <b class="text-dark">주요 기능 : </b> 회원 관리 및 SNS 로그인, 상품 리스트 확인, 상품 상세 정보
-									확인, 예약 관리, 결제 </div>
-								<p> React </p>
-							</div>
+					<div class="resume-wrap d-flex ftco-animate">
+						<div class="icon d-flex align-items-center justify-content-center">
+							<span class="flaticon-ideas"></span>
 						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2014-2015</span>
-								<h2>Top 5 LeaderShip Exellence Winner</h2>
-								<span class="position">Cambridge University</span>
-								<p>A small river named Duden flows by their place and supplies it with the necessary
-									regelialia. It is a paradisematic country, in which roasted parts of sentences
-									fly
-									into your mouth.</p>
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2014-2015</span>
-								<h2>Top 4 Web Tester</h2>
-								<span class="position">Cambridge University</span>
-								<p>A small river named Duden flows by their place and supplies it with the necessary
-									regelialia. It is a paradisematic country, in which roasted parts of sentences
-									fly
-									into your mouth.</p>
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2014-2015</span>
-								<h2>Art &amp; Creative Director</h2>
-								<span class="position">Cambridge University</span>
-								<p>A small river named Duden flows by their place and supplies it with the necessary
-									regelialia. It is a paradisematic country, in which roasted parts of sentences
-									fly
-									into your mouth.</p>
+						<div class="text pl-3 pb-3">
+							<span class="date">June 2018 - July 2019</span>
+							<h2>Teaching Assistant</h2>
+							<span class="position">Vancouver Korean Language School</span>
+							</p>
+							<b class="text-primary">Key Responsibilities</b>
+							<div>
+								<div> - Organized and planned engaging and smooth events for students, ensuring a fun learning environment</div>
+								<div> - Ensured student safety while fostering a positive and inclusive atmosphere</div>
+								<div> - Assisted lead teachers in classroom management and lesson facilitation</div>
+								<div> - Provided one-on-one support to students needing extra help with coursework</div>
+								
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 
 
 	<section class="ftco-section ftco-project">
@@ -535,7 +623,7 @@
 				<div class="col-md-12 heading-section text-center ftco-animate">
 					<h1 class="big big-2">Projects</h1>
 					<h2 id="side-projects-section" class="mb-4">Side Projects</h2>
-					<p>꾸준히 사이드 프로젝트를 진행하며, 다양한 분야의 기술 스택을 경험해왔습니다.</p>
+					<p>Here are some of my side projects that I have worked on recently.</p>
 				</div>
 			</div>
 			<div class="row no-gutters">
@@ -544,8 +632,8 @@
 						style="background-image: url(images/side-project-1.png);">
 						<div class="overlay"></div>
 						<div class="text text-center p-4">
-							<h3><a target="_blank" href="https://qpi.kr/"> QPI - 소개팅 서비스 소개 페이지 개발</a></h3>
-							<span>UI/UX 디자인부터 웹 호스팅까지 전체 영역을 담당하였습니다.</span>
+							<h3><a target="_blank" href="https://github.com/EunjeongHur/Splitzy_App">Splitzy</a></h3>
+							<span>A mobile application that simplifies group expense tracking and ensures fair and efficient settlements</span>
 						</div>
 					</div>
 				</div>
@@ -554,120 +642,8 @@
 						style="background-image: url(images/work-2.jpg);">
 						<div class="overlay"></div>
 						<div class="text text-center p-4">
-							<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-							<span>Web Design</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="project img ftco-animate d-flex justify-content-center align-items-center"
-						style="background-image: url(images/work-3.jpg);">
-						<div class="overlay"></div>
-						<div class="text text-center p-4">
-							<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-							<span>Web Design</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="project img ftco-animate d-flex justify-content-center align-items-center"
-						style="background-image: url(images/work-4.jpg);">
-						<div class="overlay"></div>
-						<div class="text text-center p-4">
-							<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-							<span>Web Design</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="project img ftco-animate d-flex justify-content-center align-items-center"
-						style="background-image: url(images/work-5.jpg);">
-						<div class="overlay"></div>
-						<div class="text text-center p-4">
-							<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-							<span>Web Design</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="project img ftco-animate d-flex justify-content-center align-items-center"
-						style="background-image: url(images/work-6.jpg);">
-						<div class="overlay"></div>
-						<div class="text text-center p-4">
-							<h3><a href="#">Branding &amp; Illustration Design</a></h3>
-							<span>Web Design</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="ftco-section" id="blog-section">
-		<div class="container">
-			<div class="row justify-content-center mb-5 pb-5">
-				<div class="col-md-7 heading-section text-center ftco-animate">
-					<h1 class="big big-2">Blog</h1>
-					<h2 class="mb-4">My Blog</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-				</div>
-			</div>
-			<div class="row d-flex">
-				<div class="col-md-4 d-flex ftco-animate">
-					<div class="blog-entry justify-content-end">
-						<a href="single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
-						</a>
-						<div class="text mt-3 float-right d-block">
-							<h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a>
-							</h3>
-							<div class="d-flex align-items-center mb-3 meta">
-								<p class="mb-0">
-									<span class="mr-2">Sept. 12, 2019</span>
-									<a href="#" class="mr-2">Admin</a>
-									<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-								</p>
-							</div>
-							<p>A small river named Duden flows by their place and supplies it with the necessary
-								regelialia.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 d-flex ftco-animate">
-					<div class="blog-entry justify-content-end">
-						<a href="single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-						</a>
-						<div class="text mt-3 float-right d-block">
-							<h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a>
-							</h3>
-							<div class="d-flex align-items-center mb-3 meta">
-								<p class="mb-0">
-									<span class="mr-2">Sept. 12, 2019</span>
-									<a href="#" class="mr-2">Admin</a>
-									<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-								</p>
-							</div>
-							<p>A small river named Duden flows by their place and supplies it with the necessary
-								regelialia.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 d-flex ftco-animate">
-					<div class="blog-entry">
-						<a href="single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-						</a>
-						<div class="text mt-3 float-right d-block">
-							<h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a>
-							</h3>
-							<div class="d-flex align-items-center mb-3 meta">
-								<p class="mb-0">
-									<span class="mr-2">Sept. 12, 2019</span>
-									<a href="#" class="mr-2">Admin</a>
-									<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-								</p>
-							</div>
-							<p>A small river named Duden flows by their place and supplies it with the necessary
-								regelialia.</p>
+							<h3><a href="#">MediaBin Web Application</a></h3>
+							<span>A web application that creates customizable URLs for user content, enabling easy sharing and management for uploaded items</span>
 						</div>
 					</div>
 				</div>
@@ -680,9 +656,9 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-7 ftco-animate text-center">
-					<h2>함께할 <span>회사를 찾는 중</span> 입니다.</h2>
-					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-					<p class="mb-0"><a href="#" class="btn btn-primary py-3 px-5">연락주세요.</a></p>
+					<h2>I'm <span>actively seeking</span> new opportunities</h2>
+					<br>
+					<p class="mb-0"><a href="#contact-section" class="btn btn-primary py-3 px-5">Contact Me</a></p>
 				</div>
 			</div>
 		</div>
@@ -693,8 +669,7 @@
 			<div class="row justify-content-center mb-5 pb-3">
 				<div class="col-md-7 heading-section text-center ftco-animate">
 					<h1 class="big big-2">Contact</h1>
-					<h2 class="mb-4">Contact Me</h2>
-					<p>회사와 함께 성장하는 개발자가 되겠습니다. 연락주세요.</p>
+					<h2 class="mb-4">Let's Connect!</h2>
 				</div>
 			</div>
 
@@ -706,7 +681,7 @@
 						</div>
 						<div>
 							<h3 class="mb-4">Address</h3>
-							<p>성남시 분당구 정자동</p>
+							<p>Coquitlam, BC, Canada</p>
 						</div>
 					</div>
 				</div>
@@ -717,7 +692,7 @@
 						</div>
 						<div>
 							<h3 class="mb-4">Contact Number</h3>
-							<p><a href="tel://1234567920">+ 010 4277 1234</a></p>
+							<p><a href="tel://7788675373">(+1) 778-867-5373</a></p>
 						</div>
 					</div>
 				</div>
@@ -728,7 +703,7 @@
 						</div>
 						<div>
 							<h3 class="mb-4">Email Address</h3>
-							<p><a href="mailto:info@yoursite.com">cookie00421@gmail.com</a></p>
+							<p><a href="mailto:alice.hur729@gmail.com">alice.hur729@gmail.com</a></p>
 						</div>
 					</div>
 				</div>
@@ -739,7 +714,7 @@
 						</div>
 						<div>
 							<h3 class="mb-4">Website</h3>
-							<p><a href="#">yoursite.com</a></p>
+							<p><a href="#">AliceHur.com</a></p>
 						</div>
 					</div>
 				</div>
@@ -791,6 +766,22 @@
 	<script src="js/scrollax.min.js"></script>
 
 	<script src="js/main.js"></script>
+
+	<script>
+		// WHO AM I? 토글 함수
+		function expandAbout() {
+			const content = document.getElementById('about-content');
+			const icon = document.getElementById('toggle-icon');
+			
+			if (content.classList.contains('show')) {
+				content.classList.remove('show');
+				icon.classList.remove('rotated');
+			} else {
+				content.classList.add('show');
+				icon.classList.add('rotated');
+			}
+		}
+	</script>
 
 </body>
 
